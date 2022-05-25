@@ -1,19 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Test parent child</h1>
+    <button @click="showResults">Click me</button>
+    <p v-if="show">{{ res }}</p>
+    <Child @update="getResult" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Child from "./components/child.vue";
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { Child },
+  data() {
+    return {
+      res: [],
+      show: false,
+    };
+  },
+  methods: {
+    getResult(res) {
+      this.res = res;
+    },
+    showResults() {
+      this.show = !this.show;
+    },
+  },
+};
 </script>
 
 <style>
